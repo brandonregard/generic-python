@@ -55,7 +55,6 @@ class Solutions(object):
             if p[1] != '|':
                 result.append((like, dislike))
                 like = dislike = ''
-                continue
             else:
                 like = ('%s%s' % (like, p[0])).strip()
                 dislike = ('%s%s' % (dislike, p[2])).strip()
