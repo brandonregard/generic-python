@@ -35,7 +35,7 @@ class Solutions(object):
 
     def month_last_day(self, d):
         """Given a date, return the number of days in the month."""
-        return (d.replace(month=d.month+1, day=1) - timedelta(days=1)).day
+        return (d.replace(month=d.month%12+1, day=1) - timedelta(days=1)).day
 
     def palindrome_test_function(self):
         """Return a function object that will accept 1 argument and can be
@@ -49,15 +49,12 @@ class Solutions(object):
     def string_parse(self, s):
         """Given a custom table as a string, return a list row of tuples."""
         result = []
-        like = ''
-        dislike = ''
-        lines = s.splitlines()[3:-1]
-        for l in lines:
+        like = dislike = ''
+        for l in s.splitlines()[3:-1]:
             p = l[1:-1].partition('|')
             if p[1] != '|':
                 result.append((like, dislike))
-                like = ''
-                dislike = ''
+                like = dislike = ''
                 continue
             else:
                 like = ('%s%s' % (like, p[0])).strip()
